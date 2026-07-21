@@ -1,0 +1,43 @@
+{
+  "activePreset": "deepseek",
+  "defaultTier": "medium",
+  "rules": [
+    "Read-only tasks (grep, glob, read, ls) → @fast. Parallelize independent reads.",
+    "Implementation tasks (edit, write, refactor, tests, bug-fix) → @medium.",
+    "Architecture, security review, performance analysis, root-cause debugging, multi-system tradeoffs → @heavy.",
+    "Dispatch @fast for context-gathering BEFORE dispatching @heavy. @heavy has no exploration tools."
+  ],
+  "presets": {
+    "deepseek": {
+      "fast": {
+        "model": "deepseek/deepseek-v4-flash",
+        "description": "Fast read-only explorer. Grep/glob/read/ls only. No edits.",
+        "whenToUse": ["exploring", "searching", "reading files", "grepping", "listing directories"],
+        "costRatio": 0.2
+      },
+      "medium": {
+        "model": "deepseek/deepseek-v4-pro",
+        "description": "General-purpose implementation. Edits, refactors, tests, bug fixes, standard coding.",
+        "whenToUse": ["editing code", "writing code", "refactoring", "testing", "bug fixes"],
+        "costRatio": 1
+      },
+      "heavy": {
+        "model": "deepseek/deepseek-v4-pro",
+        "description": "Complex analysis. Architecture, security, performance, multi-system debugging.",
+        "whenToUse": ["architecture decisions", "security review", "performance optimization", "root-cause analysis"],
+        "costRatio": 1,
+        "steps": 8
+      }
+    }
+  },
+  "tierCaps": {
+    "fast": 8,
+    "medium": 5,
+    "heavy": 3
+  },
+  "tierPrompts": {
+    "fast": "You are a fast read-only explorer. Use grep, glob, read, and ls to find answers. NEVER edit files. Return file:line references and concise summaries. If you encounter ambiguity, return what you found and note what's still needed.",
+    "medium": "You are an implementation specialist. Match existing code patterns and conventions. Run targeted tests after changes. If you hit 2+ consecutive failures, stop and report — do not self-escalate.",
+    "heavy": "You are an analysis architect. Reason about tradeoffs, security implications, and performance. The orchestrator should have pre-gathered context via @fast. If you lack context, return SCOPE GROWTH rather than guessing."
+  }
+}
