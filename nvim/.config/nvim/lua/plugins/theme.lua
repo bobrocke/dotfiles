@@ -1,1 +1,0 @@
-/home/bob/.config/omarchy/current/theme/neovim.lua
