@@ -3,6 +3,8 @@
 -- Add any additional options here
 vim.opt.relativenumber = false
 vim.opt.ttimeoutlen = 50
+vim.opt.wrap = true
+vim.opt.linebreak = true
 
 -- Red squiggly underline for all spelling errors (undercurl works in Ghostty)
 local function set_spell_highlights()
