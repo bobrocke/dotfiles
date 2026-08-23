@@ -1,0 +1,98 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "lean-ctx": {
+      "command": [
+        "lean-ctx"
+      ],
+      "enabled": true,
+      "environment": {
+        "LEAN_CTX_DATA_DIR": "{env:HOME}/.config/lean-ctx"
+      },
+      "type": "local"
+    }
+  },
+  "model": "deepseek/deepseek-v4-pro",
+  "default_agent": "deepseek-build",
+  "permission": {
+    "edit": "ask"
+  },
+  "small_model": "deepseek/deepseek-v4-flash",
+  "agent": {
+    "build": {
+      "disable": true
+    },
+    "deepseek-build": {
+      "description": "DeepSeek models.",
+      "mode": "primary",
+      "model": "deepseek/deepseek-v4-pro",
+      "prompt": "You are the orchestrator. Delegate read-only exploration, searches, and file inspection to @deepseek-fast. Delegate implementation, refactoring, tests, and bug fixes to @deepseek-medium. Delegate architecture, security, performance, and root-cause analysis to @deepseek-heavy after gathering relevant context. Keep orchestration and final synthesis in this session."
+    },
+    "deepseek-fast": {
+      "description": "Fast, read-only operations.",
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-flash",
+      "prompt": "Answer the assigned exploration question concisely with file and line references. Do not edit files or run shell commands.",
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "task": "deny"
+      }
+    },
+    "deepseek-medium": {
+      "description": "Implementation, refactoring, testing, and standard bug fixes.",
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "prompt": "Implement the assigned change using existing project conventions. Run focused verification and report the result.",
+      "permission": {
+        "task": "deny"
+      }
+    },
+    "deepseek-heavy": {
+      "description": "Architecture, security, performance, and complex root-cause analysis.",
+      "mode": "subagent",
+      "model": "deepseek/deepseek-v4-pro",
+      "prompt": "Analyze the provided evidence and explain concrete risks, tradeoffs, and recommendations. Request missing context rather than guessing.",
+      "permission": {
+        "edit": "deny",
+        "task": "deny"
+      }
+    },
+    "gpt-build": {
+      "description": "GPT-5.6 Terra models.",
+      "mode": "primary",
+      "model": "openai/gpt-5.6-terra",
+      "prompt": "You are the orchestrator. Delegate read-only exploration, searches, and file inspection to @gpt-fast. Delegate implementation, refactoring, tests, and bug fixes to @gpt-medium. Delegate architecture, security, performance, and root-cause analysis to @gpt-heavy after gathering relevant context. Keep orchestration and final synthesis in this session."
+    },
+    "gpt-fast": {
+      "description": "Fast, read-only codebase exploration using GPT-5.6 Terra Fast.",
+      "mode": "subagent",
+      "model": "openai/gpt-5.6-terra-fast",
+      "prompt": "Answer the assigned exploration question concisely with file and line references. Do not edit files or run shell commands.",
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "task": "deny"
+      }
+    },
+    "gpt-medium": {
+      "description": "Implementation, refactoring, testing, and standard bug fixes using GPT-5.6 Terra.",
+      "mode": "subagent",
+      "model": "openai/gpt-5.6-terra",
+      "prompt": "Implement the assigned change using existing project conventions. Run focused verification and report the result.",
+      "permission": {
+        "task": "deny"
+      }
+    },
+    "gpt-heavy": {
+      "description": "Architecture, security, performance, and complex root-cause analysis using GPT-5.6 Terra Pro.",
+      "mode": "subagent",
+      "model": "openai/gpt-5.6-terra-pro",
+      "prompt": "Analyze the provided evidence and explain concrete risks, tradeoffs, and recommendations. Request missing context rather than guessing.",
+      "permission": {
+        "edit": "deny",
+        "task": "deny"
+      }
+    }
+  }
+}
