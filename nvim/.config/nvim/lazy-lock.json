@@ -54,9 +54,5 @@
   "vim-tmux-navigator": { "branch": "master", "commit": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" },
   "white.nvim": { "branch": "main", "commit": "e3c3c3cc4b943b521032299e4f9b0d84a02e06d1" },
-<<<<<<< HEAD
-  "yazi.nvim": { "branch": "main", "commit": "4dd5dc90df7a0fad03acfbef2207063e96fbae56" }
-=======
   "yazi.nvim": { "branch": "main", "commit": "66a818b149f817ec8576021d5a696825a29ebf10" }
->>>>>>> 0d6629d (lazy-lock.json)
 }
