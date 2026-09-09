@@ -7,6 +7,9 @@ vim.opt.ttimeoutlen = 50
 vim.opt.wrap = true
 vim.opt.linebreak = true
 
+-- Disable inlay hints by default (toggle with <leader>uh)
+vim.lsp.inlay_hint.enable(false)
+
 -- Red squiggly underline for all spelling errors (undercurl works in Ghostty)
 local function set_spell_highlights()
   local spell_groups = { "SpellBad", "SpellCap", "SpellRare", "SpellLocal" }
