@@ -10,7 +10,7 @@ return {
     opts = function(_, opts)
       opts.linters = vim.tbl_deep_extend("force", opts.linters or {}, {
         golangcilint = {
-          cmd = "/Users/bob/go/bin/golangci-lint",
+          cmd = vim.fn.expand("~/go/bin/golangci-lint"),
         },
       })
     end,
