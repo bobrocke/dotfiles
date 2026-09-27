@@ -82,9 +82,9 @@
       "prompt": "You are in plan mode. Analyze the codebase, review changes, and propose a concrete plan of action. Do not make changes. You may use approved read-only shell commands for inspection."
     },
     "deepseek": {
-      "description": "DeepSeek V4 Pro orchestrator; delegates simple tasks to @deepseek-fast.",
+      "description": "DeepSeek V4.1 Flash orchestrator; delegates simple tasks to @deepseek-fast.",
       "mode": "primary",
-      "model": "deepseek/deepseek-v4-pro",
+      "model": "deepseek/deepseek-flash",
       "prompt": "You are the orchestrator. Delegate read-only exploration, searches, and file inspection to @deepseek-fast. Handle everything else yourself and keep orchestration and final synthesis in this session.",
       "permission": {
         "task": {
@@ -123,9 +123,9 @@
       "prompt": "You are in plan mode. Analyze the codebase, review changes, and propose a concrete plan of action. Do not make changes. You may use approved read-only shell commands for inspection."
     },
     "deepseek-fast": {
-      "description": "DeepSeek V4 Flash for simpler read-only tasks.",
+      "description": "DeepSeek V4.1 Flash for simpler read-only tasks.",
       "mode": "subagent",
-      "model": "deepseek/deepseek-v4-flash",
+      "model": "deepseek/deepseek-flash",
       "prompt": "Answer the assigned question concisely with file and line references. Do not edit files or run shell commands.",
       "permission": {
         "edit": "deny",
